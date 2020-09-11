@@ -1,0 +1,5 @@
+all: eq_solver.cpp
+	g++ -Wall -DDEBUG -o eq_solver_debug eq_solver.cpp
+
+clean: 
+	rm -rf *.o all
