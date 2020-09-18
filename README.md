@@ -12,7 +12,10 @@ In debug mode you will see results of running unit tests for functions of the pr
 
 ### Installing
 
-* Download the project from GitHub or clone it by "git clone https://github.com/koralexa/eq_solver.git".
+* Download the project from GitHub or clone it by
+```
+git clone https://github.com/koralexa/eq_solver.git
+```
 
 ### Executing program
 
