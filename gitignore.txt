@@ -1,0 +1,3 @@
+*.o
+eq_solver
+eq_solver_debug
