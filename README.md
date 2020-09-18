@@ -4,7 +4,7 @@ This projects provides ability to get number of roots and real roots of any quad
 
 ## Description
 
-There are two modes: release mode and debag mode.
+There are two modes: release mode and debug mode.
 In release mode you will get prompt to enter coefficients and after that you will see answer: number of roots and roots (in case they exist). If your input is incorrect you will see a warning and prompt to try to enter coefficients again.
 In debug mode you will see results of running unit tests for functions of the program.
 
