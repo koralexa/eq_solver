@@ -67,6 +67,32 @@ int ReadData(double &a, double &b, double &c) {
 
 //-------------------------------------------------------------------------------------------------
 
+//! Counts discriminant for quadratic equation
+//!
+//! @param [in] a a‐coefficient
+//! @param [in] b b‐coefficient
+//! @param [in] c c‐coefficient
+//!
+//! @return Discriminant for ax^2 + bx + c = 0 equation
+
+double DiscriminantCounter(double a, double b, double c) {
+    if (!std::isfinite(a)) {
+        std::cout << "ERROR: a parametr of DiscriminantCounter became not finite." << std::endl;
+        return NAN;
+    }
+    if (!std::isfinite(b)) {
+        std::cout << "ERROR: b parametr of DiscriminantCounter became not finite." << std::endl;
+        return NAN;
+    }
+    if (!std::isfinite(c)) {
+        std::cout << "ERROR: c parametr of DiscriminantCounter became not finite." << std::endl;
+        return NAN;
+    }
+    return b * b - 4 * a * c;
+}
+
+//-------------------------------------------------------------------------------------------------
+
 //! Solves a linear equation bx + c = 0
 //!
 //! @param [in] b b‐coefficient
@@ -158,7 +184,7 @@ int SolveQuadraticEquation(double a, double b, double c, double &root1, double &
         return SolveLinearEquation(b, c, root1);
     }
     
-    double discriminant = b * b - 4 * a * c;
+    double discriminant = DiscriminantCounter(a, b, c);
     if (!std::isfinite(discriminant)) {
         std::cout << "ERROR: discriminant variable in SolveQuadraticEquation became not finite." << std::endl;
         return FINITE_ERROR;

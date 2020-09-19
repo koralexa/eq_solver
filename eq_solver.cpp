@@ -1,4 +1,6 @@
+#ifdef DEBUG
 #include "test_defines.h"
+#endif
 #include "functions.h"
 
 //-------------------------------------------------------------------------------------------------
@@ -9,6 +11,9 @@ int main() {
 #ifdef DEBUG
     TEST_IS_ZERO(1.0, 0);
     TEST_IS_ZERO(1E-10, 1);
+    
+    TEST_DISCRIMINANT_COUNTER(10.0, 20.0, 5.0, 200.0);
+    TEST_DISCRIMINANT_COUNTER(10.0, 20.0, 30.0, -800.0);
     
     TEST_SOLVE_LINEAR_EQUATION(6.0, -3.0, 1, 0.5);
     TEST_SOLVE_LINEAR_EQUATION(0.0, 7.0, 0, 0.0);

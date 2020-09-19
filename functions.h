@@ -15,6 +15,8 @@
 
 int IsZero(double x);
 
+double DiscriminantCounter(double a, double b, double c);
+
 int ReadData(double &a, double &b, double &c);
 
 int SolveLinearEquation(double b, double c, double &root1);

@@ -48,6 +48,42 @@
 
 //-------------------------------------------------------------------------------------------------
 
+#define DISCRIMINANT_COUNTER_OK(a, b, c, answer, right_answer) \
+            printf("%s%s%s %s%G%s %G%s %G%s %G %s %G\n", \
+                    GREEN, \
+                    "[PASSED]", \
+                    WHITE, \
+                    "DiscriminantCounter(", \
+                    a, \
+                    ",", \
+                    b, \
+                    ",", \
+                    c, \
+                    ") == ", \
+                    answer, \
+                    "==", \
+                    right_answer);
+
+
+
+#define DISCRIMINANT_COUNTER_ERR(a, b, c, answer, right_answer) \
+            printf("%s%s%s %s%G%s %G%s %G%s %G %s %G\n", \
+                    RED, \
+                    "[ERROR] ", \
+                    WHITE, \
+                    "DiscriminantCounter(", \
+                    a, \
+                    ",", \
+                    b, \
+                    ",", \
+                    c, \
+                    ") == ", \
+                    answer, \
+                    "!=", \
+                    right_answer);
+
+//-------------------------------------------------------------------------------------------------
+
 #define PRINT_LINEAR_NUMBER_OK(b, c, rootsNumber, answerRootsNumber) \
             printf("%s%G%s %G%s %d %s %d\n", \
                     "SolveLinearEquation(", \
@@ -129,6 +165,17 @@
 
 //-------------------------------------------------------------------------------------------------
 
+#define TEST_DISCRIMINANT_COUNTER(a, b, c, answer) { \
+            double discr = DiscriminantCounter(a, b, c); \
+            if (IsZero(discr - answer)) { \
+                DISCRIMINANT_COUNTER_OK(a, b, c, discr, answer); \
+            } else { \
+                DISCRIMINANT_COUNTER_ERR(a, b, c, discr, answer); \
+            } \
+        }
+
+//-------------------------------------------------------------------------------------------------
+
 #define TEST_SOLVE_LINEAR_EQUATION(b, c, answerRootsNumber, answerRoot) { \
             double root = NAN; \
             int rootsNumber = SolveLinearEquation(b, c, root); \
@@ -146,7 +193,7 @@
                     if (answerRootsNumber != 1) { \
                         PRINT_ERROR; \
                         PRINT_LINEAR_NUMBER_ERR(b, c, rootsNumber, answerRootsNumber); \
-                    } else if (root != answerRoot) { \
+                    } else if (!IsZero(root - answerRoot)) { \
                         PRINT_ERROR; \
                         PRINT_LINEAR_NUMBER_OK(b, c, rootsNumber, answerRootsNumber); \
                         PRINT_ROOT_ERR(root, answerRoot); \
@@ -195,7 +242,7 @@
                     if (answerRootsNumber != 1) { \
                         PRINT_ERROR; \
                         PRINT_QUADRATIC_NUMBER_ERR(a, b, c, rootsNumber, answerRootsNumber); \
-                    } else if (root1 != answerRoot1) { \
+                    } else if (!IsZero(root1 - answerRoot1)) { \
                         PRINT_ERROR; \
                         PRINT_QUADRATIC_NUMBER_OK(a, b, c, rootsNumber, answerRootsNumber); \
                         PRINT_ROOT_ERR(root1, answerRoot1); \
@@ -209,17 +256,17 @@
                     if (answerRootsNumber != 2) { \
                         PRINT_ERROR; \
                         PRINT_QUADRATIC_NUMBER_ERR(a, b, c, rootsNumber, answerRootsNumber); \
-                    } else if ((root1 != answerRoot1) && (root2 != answerRoot2)) { \
+                    } else if ((!IsZero(root1 - answerRoot1)) && (!IsZero(root2 - answerRoot2))) { \
                         PRINT_ERROR; \
                         PRINT_QUADRATIC_NUMBER_OK(a, b, c, rootsNumber, answerRootsNumber); \
                         PRINT_ROOT_ERR(root1, answerRoot1); \
                         PRINT_ROOT_ERR(root2, answerRoot2); \
-                    } else if (root1 != answerRoot1) { \
+                    } else if (!IsZero(root1 - answerRoot1)) { \
                         PRINT_ERROR; \
                         PRINT_QUADRATIC_NUMBER_OK(a, b, c, rootsNumber, answerRootsNumber); \
                         PRINT_ROOT_ERR(root1, answerRoot1); \
                         PRINT_ROOT_OK(root2, answerRoot2); \
-                    } else if (root2 != answerRoot2) { \
+                    } else if (!IsZero(root2 - answerRoot2)) { \
                         PRINT_ERROR; \
                         PRINT_QUADRATIC_NUMBER_OK(a, b, c, rootsNumber, answerRootsNumber); \
                         PRINT_ROOT_OK(root1, answerRoot1); \
